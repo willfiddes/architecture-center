@@ -60,7 +60,8 @@ Consider the following guidelines when using Azure Active Directory:
 - If you are using the REST API for Azure Active Directory, retry the operation if the result code is 429 (Too Many Requests) or an error in the 5xx range. Do not retry for any other errors.
 - For 429 errors, only retry after the time indicated in the **Retry-After** header.  
 - For 5xx errors, use exponential back-off, with the first retry at least 5 seconds after the response. 
-- Do not retry on errors other than 429 and 5xx. 
+- For 404 errors, if there is a PATCH request send immediately after a POST request. Use exponential back-off, with the first retry at least 5 seconds after the response. 
+- Do not retry on errors other than 404, 429, and 5xx. 
 
 ### More information
 
